@@ -1,10 +1,12 @@
 package com.example.activity5.view
 
-import android.R
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -17,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.activity5.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,7 +30,7 @@ fun FormIsian(
     Scaffold (modifier= Modifier,
         topBar = {
             TopAppBar(
-                title = {Text(stringResource(id="Form Isian"), color = Color.White)},
+                title = {Text(stringResource(R.string.home), color = Color.White)},
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = colorResource(id = R.color.teal_700))
             )}
@@ -39,4 +42,40 @@ fun FormIsian(
                 value = "",
                 singleLine = true,
                 modifier = Modifier
-                    .padding(top = 20.dp)
+                    .padding(top = 20.dp),
+                label = {Text(text = "Nama Lengkap")},
+                onValueChange = {},
+            )
+            HorizontalDivider(modifier = Modifier.border(
+                .padding(20.dp)
+                .width(250.dp), thickness = Thickness,color = Color.Red)
+            Row{
+                jenisK.forEach {
+                    item ->
+                    Row(VerticalAlignment = Alignment.CenterVertically){
+                        RadioButton(
+                            selected = false,
+                            onClick = {item}
+                        )
+                        Text(text = item)
+                    }
+                }
+            }
+            HorizontalDivider(modifier = Modifier
+                .padding(20.dp)
+                .width(250.dp),
+                thickness = 1.dp,
+                color = Color.Red
+            )
+            OutlinedTextField(
+                value = "",
+                singleLine = true,
+                modifier = Modifier
+                    .width(250.dp),
+                label = {Text(text = "Alamat")},
+                onValueChange = {},
+            )
+
+        }
+    }
+}
